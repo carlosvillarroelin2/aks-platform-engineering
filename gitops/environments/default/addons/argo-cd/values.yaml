@@ -55,6 +55,24 @@ server:
     annotations:
       # https://cloud-provider-azure.sigs.k8s.io/topics/loadbalancer/#loadbalancer-annotations
       service.beta.kubernetes.io/azure-load-balancer-internal: false
+  extraArgs:
+    - --insecure
+#  certificate:
+#    # -- Deploy a Certificate resource (requires cert-manager)
+#    enabled: true
+#    # -- The name of the Secret that will be automatically created and managed by this Certificate resource
+#    secretName: argocd-server-tls
+#    # -- Certificate primary domain (commonName)
+#    domain: "dome-argocd.dev.in2.es"
+#    # Certificate issuer
+#    ## Ref: https://cert-manager.io/docs/concepts/issuer
+#    issuer:
+#      # -- Certificate issuer group. Set if using an external issuer. Eg. `cert-manager.io`
+#      #group: "cert-manager.io"
+#      # -- Certificate issuer kind. Either `Issuer` or `ClusterIssuer`
+#      kind: "ClusterIssuer"
+#      # -- Certificate issuer name. Eg. `letsencrypt`
+#      name: "letsencrypt"
 
 configs:
   cm:
