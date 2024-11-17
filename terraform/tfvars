@@ -1,7 +1,10 @@
 # Sample tfvars - rename to terraform.tfvars to use
 
 # Azure region
-location = "westus3"
+location = "westeurope"
+
+# Resource group name
+resource_group_name = "myAksRg"
 
 # Kubernetes version
 kubernetes_version = null # Defaults to latest
@@ -13,13 +16,15 @@ gitops_addons_basepath = "gitops/"
 gitops_addons_path     = "bootstrap/control-plane/addons"
 gitops_addons_revision = "main"
 
+# Infrastructure provider
+infrastructure_provider = "crossplane"
+
 # Agents size
-agents_size = "Standard_D2s_v3"
+agents_size = "Standard_D8ds_v5"
 
 # Addons configuration
 addons = {
-  enable_kyverno                         = false
+  enable_argocd        = true
+  enable_cert_manager  = true
+  enable_ingress_nginx = true
 }
-
-# Resource group name
-resource_group_name = "aks-gitops"

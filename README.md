@@ -59,6 +59,12 @@ Choose Crossplane **or** Cluster API provider for Azure (CAPZ) to support deploy
     - Change the `gitops_addons_org` variable to `git@github.com:Azure-Samples` replacing Azure-Samples with your fork org/username versus the existing `https://` format
     - Uncomment line 218 of the `main.tf` file: `# sshPrivateKey = file(pathexpand(var.git_private_ssh_key))`
 
+Login into Azure and select a subscription:
+
+```bash
+az login
+```
+
 Run Terraform:
 
 ```bash
@@ -91,7 +97,7 @@ Terraform completed installing the AKS cluster, installing ArgoCD, and configuri
 Getting the credentials for the Control Plane Cluster
 
 ```shell
-export KUBECONFIG=<your_path_to_this_repo>/aks-platform-engineering/terraform/kubeconfig
+export KUBECONFIG=/workspaces/aks-platform-engineering/terraform/kubeconfig
 echo $KUBECONFIG
 ```
 
