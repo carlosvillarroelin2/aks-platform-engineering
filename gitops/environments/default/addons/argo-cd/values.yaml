@@ -55,8 +55,8 @@ server:
     annotations:
       # https://cloud-provider-azure.sigs.k8s.io/topics/loadbalancer/#loadbalancer-annotations
       service.beta.kubernetes.io/azure-load-balancer-internal: false
-  extraArgs:
-    - --insecure
+#  extraArgs:
+#    - --insecure
 #  certificate:
 #    # -- Deploy a Certificate resource (requires cert-manager)
 #    enabled: true
