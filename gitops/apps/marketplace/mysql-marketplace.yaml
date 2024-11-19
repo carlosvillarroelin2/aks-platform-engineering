@@ -12,7 +12,7 @@ spec:
   project: default
   source:
     path: azure/marketplace/iam/mysql
-    repoURL: https://github.com/in2workspace/dome-gitops-aks
+    repoURL: https://github.com/carlosvillarroelin2/aks-platform-engineering
     targetRevision: HEAD
   syncPolicy:
     automated:
