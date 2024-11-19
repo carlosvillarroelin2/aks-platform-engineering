@@ -4,13 +4,16 @@
 location = "westeurope"
 
 # Resource group name
-resource_group_name = "myAksRg"
+resource_group_name = "MyRg"
+
+# AKS reosurce name
+kubernetes_cluster_name = "MyAks"
 
 # Kubernetes version
 kubernetes_version = null # Defaults to latest
 
 # GitOps Addons configuration
-gitops_addons_org      = "https://github.com/myGitHubUserName"
+gitops_addons_org      = "https://github.com/MyRepo"
 gitops_addons_repo     = "aks-platform-engineering"
 gitops_addons_basepath = "gitops/"
 gitops_addons_path     = "bootstrap/control-plane/addons"

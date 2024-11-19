@@ -108,6 +108,7 @@ module "aks" {
   version                           = "9.1.0"
   resource_group_name               = azurerm_resource_group.this.name
   location                          = var.location
+  cluster_name                      = var.kubernetes_cluster_name
   kubernetes_version                = var.kubernetes_version
   orchestrator_version              = var.kubernetes_version
   role_based_access_control_enabled = var.role_based_access_control_enabled

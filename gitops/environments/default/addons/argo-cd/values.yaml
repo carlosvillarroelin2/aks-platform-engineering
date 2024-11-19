@@ -55,14 +55,24 @@ server:
     annotations:
       # https://cloud-provider-azure.sigs.k8s.io/topics/loadbalancer/#loadbalancer-annotations
       service.beta.kubernetes.io/azure-load-balancer-internal: false
-  ingress:
-    enabled: true
-    hostname: dome-argocd.dev.in2.es
-    tls: true
-    ingressClassName: nginx
-    annotations:
-      cert-manager.io/cluster-issuer: letsencrypt
-      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+#  extraArgs:
+#    - --insecure
+#  certificate:
+#    # -- Deploy a Certificate resource (requires cert-manager)
+#    enabled: true
+#    # -- The name of the Secret that will be automatically created and managed by this Certificate resource
+#    secretName: argocd-server-tls
+#    # -- Certificate primary domain (commonName)
+#    domain: "dome-argocd.dev.in2.es"
+#    # Certificate issuer
+#    ## Ref: https://cert-manager.io/docs/concepts/issuer
+#    issuer:
+#      # -- Certificate issuer group. Set if using an external issuer. Eg. `cert-manager.io`
+#      #group: "cert-manager.io"
+#      # -- Certificate issuer kind. Either `Issuer` or `ClusterIssuer`
+#      kind: "ClusterIssuer"
+#      # -- Certificate issuer name. Eg. `letsencrypt`
+#      name: "letsencrypt"
 
 configs:
   cm:
@@ -72,3 +82,34 @@ configs:
         - ProviderConfigUsage
         apiGroups:
         - "*"
+
+# -- Array of extra K8s manifests to deploy
+## Note: Supports use of custom Helm templates
+##       It gets handle in this form inside the argo-cd chart
+# {{ range .Values.extraObjects }}
+# ---
+# {{ if typeIs "string" . }}
+#     {{- tpl . $ }}
+# {{- else }}
+#     {{- tpl (toYaml .) $ }}
+# {{- end }}
+# {{ end }}
+extraObjects:
+  - |
+    apiVersion: argoproj.io/v1alpha1
+    kind: AppProject
+    metadata:
+      name: default
+      namespace: {{ $.Release.Namespace | quote }}
+      annotations:
+        source: gitops-brigde
+    spec:
+      clusterResourceWhitelist:
+      - group: '*'
+        kind: '*'
+      sourceRepos:
+        - '*'
+      destinations:
+        - namespace: '*'
+          name: '*'
+          server: '*'

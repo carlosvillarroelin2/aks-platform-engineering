@@ -209,3 +209,9 @@ variable "net_profile_service_cidr" {
   default     = "10.0.0.0/16"
   type        = string
 }
+
+variable "kubernetes_cluster_name" {
+  description = "Specifies the name of the Kubernetes cluster."
+  type        = string
+  default     = "gitops-aks"
+}

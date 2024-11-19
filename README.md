@@ -77,15 +77,10 @@ Choose the `infrastructure_provider` variable to be `capz` (default) or `crosspl
 > [!Important] 
 > Change `azure-samples` to your fork organization or GitHub user name in the commands below.
 
-Alternatively, consider changing the example `tvars` file to match your desired configuration versus using the `-var` switches below.
+Alternatively, consider changing the example `tvars` file to match your desired configuration
 
 ```bash
-# For capz control plane
-terraform apply -var gitops_addons_org=https://github.com/azure-samples --auto-approve
-
-# For crossplane control plane
-terraform apply -var gitops_addons_org=https://github.com/azure-samples \
-                -var infrastructure_provider=crossplane --auto-approve
+terraform apply --auto-approve
 ```
 
 > Note: You can ignore the warnings related to deprecated attributes and invalid kubeconfig path.
@@ -166,6 +161,14 @@ kubectl apply -f ../gitops/hooks/identity/identity.yaml
 1. Terraform created an AKS control plane / management cluster and downloaded the kubeconfig file in the `terraform` directory.
 1. Terraform installed ArgoCD via the Terraform Kubernetes provider to that cluster
 1. Terraform did a `kubectl apply` an ArgoCD ApplicationSet to the cluster which syncs the bootstrap folder [gitops/bootstrap/control-plane/addons](https://github.com/Azure-Samples/aks-platform-engineering/tree/main/gitops/bootstrap/control-plane/addons). That ApplicationSet utilizes the [ArgoCD App of Apps pattern](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern) and ArgoCD applies all of the applications under that folder in git which match the [labels specified in Terraform](https://github.com/Azure-Samples/aks-platform-engineering/blob/main/terraform/main.tf#L20-L38).
+
+### Delete the Control Plane Cluster
+
+Run Terraform:
+
+```bash
+terraform destroy --auto-approve
+```
 
 ## Next Steps
 
