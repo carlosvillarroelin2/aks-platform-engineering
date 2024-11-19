@@ -10,8 +10,8 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: ionos/namespaces
-    repoURL: https://github.com/DOME-Marketplace/dome-gitops
+    path: azure/namespaces
+    repoURL: https://github.com/carlosvillarroelin2/aks-platform-engineering
     targetRevision: HEAD
   syncPolicy:
     automated:
