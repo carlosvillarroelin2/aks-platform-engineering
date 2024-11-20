@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: walt-id
+  name: verifier-api
   namespace: argocd
   labels:
     purpose: marketplace-iam
@@ -11,8 +11,8 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: azure/marketplace/iam/vcwaltid
-    repoURL: https://github.com/in2workspace/dome-gitops-aks
+    path: azure/marketplace/iam/verifier
+    repoURL: https://github.com/carlosvillarroelin2/aks-platform-engineering
     targetRevision: HEAD
   syncPolicy:
     automated:

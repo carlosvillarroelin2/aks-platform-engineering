@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: apisix-marketplace
+  name: vcwaltid
   namespace: argocd
   labels:
-    purpose: marketplace
+    purpose: marketplace-iam
 spec:
   destination:
     namespace: marketplace
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: azure/marketplace/iam/apisix
-    repoURL: https://github.com/in2workspace/dome-gitops-aks
+    path: azure/marketplace/iam/vcwaltid
+    repoURL: https://github.com/carlosvillarroelin2/aks-platform-engineering
     targetRevision: HEAD
   syncPolicy:
     automated:

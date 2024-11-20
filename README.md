@@ -110,6 +110,20 @@ kubectl port-forward svc/argo-cd-argocd-server -n argocd 8080:443
 
 The username for the ArgoCD UI login is `admin`.
 
+### Deploy DOME Apps using ArgoCD
+
+```shell
+kubectl apply -f gitops/apps/namespaces.yaml -n argocd
+kubectl apply -f gitops/apps/sealed-secrets.yaml -n argocd
+kubectl apply -f gitops/apps/cert-manager.yaml -n argocd
+kubectl apply -f gitops/apps/ingress.yaml -n argocd
+kubectl apply -f gitops/apps/marketplace/mysql.yaml -n argocd
+kubectl apply -f gitops/apps/marketplace/mongodb.yaml -n argocd
+kubectl apply -f gitops/apps/marketplace/credentials-config-service.yaml -n argocd
+kubectl apply -f gitops/apps/marketplace/trusted-issuers-list.yaml -n argocd
+
+```
+
 ### Install and configure CAPZ using Cluster-API operator
 
 The crossplane option will automatically install via ArgoCD when using the `var infrastructure_provider=crossplane`, but the CAPZ option will need to be installed manually.  Cert-manager was automatically installed via ArgoCD which is an install pre-requisite. Workload identity was also created and attached to the AKS management cluster.
