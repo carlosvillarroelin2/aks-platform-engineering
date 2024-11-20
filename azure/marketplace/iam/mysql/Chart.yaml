@@ -9,4 +9,4 @@ appVersion: "8.0.31"
 dependencies:
 - name: mysql
   version: 9.4.4
-  repository: https://charts.bitnami.com/bitnami
+  repository: oci://registry-1.docker.io/bitnamicharts
