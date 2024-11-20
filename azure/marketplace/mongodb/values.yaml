@@ -10,10 +10,10 @@ mongodb:
     runAsUser: 1000
   containerSecurityContext:
     enabled: false
-  resources:
-    limits:
-      cpu: 200m
-      memory: 512Mi
+  #resources:
+  #  limits:
+  #    cpu: 200m
+  #    memory: 512Mi
   persistence:
     enabled: true
     size: 8Gi
