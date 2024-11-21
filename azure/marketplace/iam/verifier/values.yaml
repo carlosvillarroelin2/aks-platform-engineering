@@ -10,18 +10,18 @@ verifier-api:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-sbx-issuer
     hosts:
-      - host: verifier-dome.dev.in2.es
+      - host: dome.verifier.dev.in2.es
         paths:
           - path: /
             pathType: Prefix
     tls:
       - hosts:
-          - verifier-dome.dev.in2.es
+          - dome.verifier.dev.in2.es
         secretName: verifier-tls-sec
 
   app:
     profile: dev
-    externalDomain: "https://verifier-dome.dev.in2.es"
+    externalDomain: "https://dome.verifier.dev.in2.es"
     accessToken:
       expirationUnitTime: MINUTES
       expirationTime: 60
