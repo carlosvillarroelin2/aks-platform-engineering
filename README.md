@@ -104,7 +104,7 @@ kubectl get svc -n argocd argo-cd-argocd-server
 
 It may take a few minutes for the LoadBalancer to create a public IP for the ArgoCD UI after the Terraform apply. In case something goes wrong and you don't find a public IP, connect to the ArgoCD server doing a port forward with kubectl and access the UI on https://localhost:8080.
 
-```kubectl
+```shell
 kubectl port-forward svc/argo-cd-argocd-server -n argocd 8080:443
 ```
 

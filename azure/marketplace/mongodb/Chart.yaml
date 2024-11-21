@@ -8,5 +8,5 @@ appVersion: "4.4.12"
 
 dependencies:
 - name: mongodb
-  version: 13.2.0
-  repository: oci://registry-1.docker.io/bitnamicharts
+  version: 11.0.4
+  repository: https://raw.githubusercontent.com/bitnami/charts/refs/heads/archive-full-index/bitnami/

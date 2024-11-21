@@ -4,7 +4,7 @@ metadata:
   name: mongodb-bae-configmap
 data:
   init-db.sh: |
-    mongosh <<EOF
+    mongo <<EOF
 
     var rootUser = '$MONGODB_ROOT_USER';
     var rootPassword = '$MONGODB_ROOT_PASSWORD';
