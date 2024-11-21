@@ -53,7 +53,7 @@ business-api-ecosystem:
     enabled: true
     clientId: did:key:zDnaeypyWjzn54GuUP7PmDXiiggCyiG7ksMF7Unm7kjtEKBez
     verifier:
-      host: https://verifier-dome.dev.in2.es
+      host: https://dome.verifier.dev.in2.es
       qrCodePath: /oidc/authorize
       tokenPath: /oidc/token
       jwksPath: /oidc/jwks
@@ -177,7 +177,7 @@ business-api-ecosystem:
       enabled: true
       className: nginx
       annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-sbx-issuer
+        cert-manager.io/cluster-issuer: letsencrypt-issuer
       tls: 
        -  hosts: 
             - dome-marketplace.dev.in2.es
