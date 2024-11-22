@@ -10,9 +10,16 @@ spec:
       name: lets-encrypt-issuer-account-key
     server: https://acme-v02.api.letsencrypt.org/directory
     solvers:
-    - selector:
-        dnsZones:
-          - "dev.in2.es"
-      http01:
-        ingress:
-          ingressClassName: nginx
+    - dns01:
+        azureDNS:
+          clientID: 90aa9045-713a-4e03-8445-14cdd3ffb0b4
+          clientSecretSecretRef:
+          # The following is the secret we created in Kubernetes. Issuer will use this to present challenge to Azure DNS.
+            name: azuredns-config
+            key: client-secret
+          subscriptionID: 6dd7a161-12d9-4b3d-9c8f-5094456ab7ef
+          tenantID: d4080b69-4c2b-49e6-9c20-3789b47bf163
+          resourceGroupName: rg-in2-dns-dev
+          hostedZoneName: dev.in2.es
+          # Azure Cloud Environment, default to AzurePublicCloud
+          environment: AzurePublicCloud
