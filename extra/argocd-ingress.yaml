@@ -23,4 +23,4 @@ spec:
   tls:
   - hosts:
     - dome-argocd.dev.in2.es
-    secretName: dev-in2-es-secret
+    secretName: dome-argocd.dev.in2.es-secret
