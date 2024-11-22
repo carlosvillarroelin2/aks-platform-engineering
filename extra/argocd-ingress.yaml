@@ -13,14 +13,14 @@ spec:
   - host: dome-argocd.dev.in2.es
     http:
       paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: argo-cd-argocd-server
-              port:
-                name: https
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: argo-cd-argocd-server
+            port:
+              name: https
   tls:
-    - hosts:
-      - dome-argocd.dev.in2.es
-      secretName: dev-in2-es-secret
+  - hosts:
+    - dome-argocd.dev.in2.es
+    secretName: dev-in2-es-secret
