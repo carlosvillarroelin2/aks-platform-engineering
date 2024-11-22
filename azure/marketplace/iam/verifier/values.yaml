@@ -8,20 +8,20 @@ verifier-api:
     enabled: true
     className: nginx
     annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-sbx-issuer
+      cert-manager.io/cluster-issuer: letsencrypt-issuer
     hosts:
-      - host: dome.verifier.dev.in2.es
+      - host: dome-verifier.dev.in2.es
         paths:
           - path: /
             pathType: Prefix
     tls:
       - hosts:
-          - dome.verifier.dev.in2.es
+          - dome-verifier.dev.in2.es
         secretName: verifier-tls-sec
 
   app:
     profile: dev
-    externalDomain: "https://dome.verifier.dev.in2.es"
+    externalDomain: "https://dome-verifier.dev.in2.es"
     accessToken:
       expirationUnitTime: MINUTES
       expirationTime: 60
