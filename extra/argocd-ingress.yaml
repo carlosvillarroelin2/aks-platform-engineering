@@ -18,7 +18,7 @@ spec:
           backend:
             service:
               name: argo-cd-argocd-server
-            port:
+              port:
                 name: https
   tls:
     - hosts:
