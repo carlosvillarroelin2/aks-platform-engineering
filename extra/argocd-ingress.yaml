@@ -5,8 +5,8 @@ metadata:
   namespace: argocd
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-issuer
-    #nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    #nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   ingressClassName: nginx
   rules:
@@ -18,8 +18,8 @@ spec:
           backend:
             service:
               name: argo-cd-argocd-server
-              port:
-                number: 8080
+            port:
+                name: https
   tls:
     - hosts:
       - dome-argocd.dev.in2.es
