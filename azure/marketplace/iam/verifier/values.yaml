@@ -1,7 +1,7 @@
 verifier-api:
   image:
     repository: in2workspace/in2-verifier-api
-    tag: v1.0.1-snapshot
+    tag: v1.0.13-snapshot
     pullPolicy: Always
 
   ingress:
@@ -23,12 +23,20 @@ verifier-api:
     profile: dev
     externalDomain: "https://dome-verifier.dev.in2.es"
     accessToken:
+      expirationUnitTime: DAYS
+      expirationTime: 1
+    idToken:
+        expirationUnitTime: MINUTES
+        expirationTime: 5
+    loginQrCode:
       expirationUnitTime: MINUTES
-      expirationTime: 60
+      expirationTime: 3
     clientsRepository:
-      uri: "https://raw.githubusercontent.com/DOME-Marketplace/trust-framework/refs/heads/main/sbx/trusted_services_list.yaml"
+      uri: "https://raw.githubusercontent.com/DOME-Marketplace/trust-framework/refs/heads/main/dev/trusted_services_list.yaml"
     trustedIssuerList:
       uri: "http://trusted-issuers-list.marketplace.svc.cluster.local:8080/v4/issuers/"
+    revocationList:
+      uri: "https://raw.githubusercontent.com/DOME-Marketplace/trust-framework/refs/heads/main/dev/revoked_credential_list.yaml"
     privateKey:
       existingSecret:
         enabled: true
@@ -37,4 +45,4 @@ verifier-api:
     verifierUiLoginUris:
       onboardingUri: "https://knowledgebase.dome-marketplace.org/shelves/company-onboarding-process"
       supportUri: "https://ticketing.dome-marketplace.org"
-      walletUri: "https://wallet-dome.dev.in2.es"
+      walletUri: "https://dome-wallet.dev.in2.es"
