@@ -18,13 +18,22 @@ repoServer:
       cpu: '100m'
       memory: '256Mi'
     limits:
-      cpu: '200m'
-      memory: '512Mi'
+      cpu: '2000m'
+      memory: '2048Mi'
   metrics:
     enabled: true
     service:
       annotations:
         prometheus.io/scrape: true
+  tolerations:
+    - key: "node.kubernetes.io/unreachable"
+      operator: "Exists"
+      effect: "NoExecute"
+      tolerationSeconds: 1200
+    - key: "node.kubernetes.io/not-ready"
+      operator: "Exists"
+      effect: "NoExecute"
+      tolerationSeconds: 1200
 
 applicationSet:
   replicaCount: 1 # The controller doesn't scale horizontally, is active-standby replicas
