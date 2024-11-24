@@ -8,8 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
-  #ingressClassName: nginx
-  ingressClassName: azure-application-gateway
+  ingressClassName: nginx
   rules:
   - host: dome-argocd.dev.in2.es
     http:
