@@ -220,51 +220,40 @@ kubectl apply -f gitops/apps/marketplace/trusted-issuers-list.yaml -n argocd
 
 ```
 
-### Install and configure CAPZ using Cluster-API operator
-
-The crossplane option will automatically install via ArgoCD when using the `var infrastructure_provider=crossplane`, but the CAPZ option will need to be installed manually.  Cert-manager was automatically installed via ArgoCD which is an install pre-requisite. Workload identity was also created and attached to the AKS management cluster.
-
-First verify that certificate manager is installed and pods are ready in the `cert-manager` namespace.
+### Enable Application Gateway Ingress Controller add-on for the AKS
 
 ```shell
-kubectl get pods -n cert-manager
+AGW_RG_NAME=rg-in2-dome-dev-04
+AGW_LOCATION=westeurope
+az group create --name $AGW_RG_NAME --location $AGW_LOCATION
+
+az network public-ip create --name pip-in2-dome-dev-04 --resource-group $AGW_RG_NAME --allocation-method Static --sku Standard --location $AGW_LOCATION
+
+az network vnet create --name vnet-in2-dome-dev-04 --resource-group $AGW_RG_NAME --address-prefix 10.2.0.0/16 --subnet-name ApplicationGatewaySubnet --subnet-prefix 10.2.0.0/24 --location $AGW_LOCATION
+
+az network application-gateway create --name agw-in2-dome-agw-dev-04 --resource-group $AGW_RG_NAME --sku Standard_v2 --public-ip-address pip-in2-dome-agw-dev-04 --vnet-name vnet-in2-dome-agw-dev-04 --subnet ApplicationGatewaySubnet --priority 100 --location $AGW_LOCATION
 ```
 
+Then enable
+https://learn.microsoft.com/en-us/azure/application-gateway/tutorial-ingress-controller-add-on-existing#enable-the-agic-add-on-in-existing-aks-cluster-through-azure-cli
+
+If you do it using the Az Portal you will get de peering included.
+I fnot, create a vnet peering between the two networks
+
 ```shell
-NAME                                       READY   STATUS    RESTARTS   AGE
-cert-manager-cainjector-57fd464d97-l89hs   1/1     Running   0          84s
-cert-manager-d548d744-ghmf9                1/1     Running   0          84s
-cert-manager-webhook-8656b957f-4rhr6       1/1     Running   0          84s
+AKS_NODES_RG=$(az aks show --name aks-in2-dome-dev-04 --resource-group rg-in2-dome-dev-04 -o tsv --query "nodeResourceGroup")
+AKS_VNET=vnet1
+
+aksVnetId=$(az network vnet show --name $aksVnetName --resource-group $nodeResourceGroup -o tsv --query "id")
+
+az network vnet peering create --name AppGWtoAKSVnetPeering --resource-group myResourceGroup --vnet-name myVnet --remote-vnet $aksVnetId --allow-vnet-access
+
+appGWVnetId=$(az network vnet show --name myVnet --resource-group myResourceGroup -o tsv --query "id")
+
+az network vnet peering create --name AKStoAppGWVnetPeering --resource-group $nodeResourceGroup --vnet-name $aksVnetName --remote-vnet $appGWVnetId --allow-vnet-access
 ```
 
-The following steps will install CAPZ via the Cluster-API operator which also includes Azure Service Operator (ASO) to the management cluster.
-
-```shell
-helm repo add capi-operator https://kubernetes-sigs.github.io/cluster-api-operator
-helm repo update
-helm install capi-operator capi-operator/cluster-api-operator --create-namespace -n capi-operator-system --wait --timeout 90s -f gitops/environments/default/addons/cluster-api-provider-azure/values.yaml
-``` 
-
-In order to install CAPI Operator with additional CRDs, `helm install` must use a `values.yaml` file since the commands cannot be passed on the command line.  documentdb and managedidentity CRDS are added by default in the provided [values.yaml file](./gitops/environments/default/addons/cluster-api-provider-azure/values.yaml) and can be optionally customized if desired.  For more information read the first section of [CAPZ versus Crossplane](./docs/capz-or-crossplane.md#cluster-api-provider-for-azure-capz-and-azure-service-operator-aso).
-
-This will take some time to install and can be verified it is complete by seeing two ready pods in the `azure-infrastructure-system` namespace.
-
-```shell
-kubectl get pods -n azure-infrastructure-system
-```
-
-```shell
-NAME                                                      READY   STATUS    RESTARTS       AGE
-azureserviceoperator-controller-manager-d9d69f497-h5cdm   1/1     Running   1 (115s ago)   2m24s
-capz-controller-manager-ff97799dd-8l5n2                   1/1     Running   0              2m23s
-```
-Now apply the credentials for CAPZ to be able to create resources using the Workload Identity created by Terraform.
-
-Add in the `clientID:` and `tenantID:` values from the `terraform apply` matching output values to the `gitops/hooks/identity/identity.yaml` file. Feel free to run `terraform apply` again if needed to get these output values.  Then apply the identity to the cluster.
-
-```shell
-kubectl apply -f ../gitops/hooks/identity/identity.yaml
-```
+FIXME Move to terraform an denable AGIC by default in the same RG
 
 ### Summary
 
