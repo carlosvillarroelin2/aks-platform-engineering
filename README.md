@@ -133,7 +133,14 @@ Check Permissions. As the result of the following command, we would like to see 
 az role assignment list --all --assignee $AZURE_CERT_MANAGER_SP_APP_ID
 ```
 
-A secret containing service principal password should be created on Kubernetes to facilitate presenting the challenge to Azure DNS. You can create the secret with the following command:
+A secret containing service principal password should be created on Kubernetes to facilitate presenting the challenge to Azure DNS. 
+
+Be sure you get the current AKS credentials
+```shell
+az aks get-credentials --name aks-in2-dome-dev-04 --resource-group rg-in2-dome-dev-04
+```
+
+You can create the secret with the following command:
 
 ```shell
 kubectl create secret generic azuredns-config --from-literal=client-secret=$AZURE_CERT_MANAGER_SP_PASSWORD --namespace=cert-manager
