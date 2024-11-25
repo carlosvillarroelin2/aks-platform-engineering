@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: bae-ingress-alb
-  namespace: bae-ingress-alb
+  namespace: argocd
   labels:
     purpose: infra
 spec:
