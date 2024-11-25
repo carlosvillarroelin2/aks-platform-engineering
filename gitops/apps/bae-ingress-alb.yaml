@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bae-ingress-alb
+  namespace: bae-ingress-alb
+  labels:
+    purpose: infra
+spec:
+  destination:
+    namespace: marketplace
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: extra-bae-ingress-alb
+    repoURL: https://github.com/carlosvillarroelin2/aks-platform-engineering
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
