@@ -3,7 +3,6 @@ business-api-ecosystem:
     # should set the path to the new apis.
     fullnameOverride: tmforum-api-proxy
     enabled: false
-
     tmForum:
       catalog:
         host: tm-forum-api-product-catalog
@@ -45,10 +44,8 @@ business-api-ecosystem:
         host: tm-forum-api-resource-inventory
         port: 8080
         path:
-
   bizEcosystemRss:
     enabled: false
-
   siop:
     enabled: true
     clientId: did:key:zDnaeypyWjzn54GuUP7PmDXiiggCyiG7ksMF7Unm7kjtEKBez
@@ -111,9 +108,7 @@ business-api-ecosystem:
             trustedIssuersLists: [
               "http://trusted-issuers-list:8080"
             ]
-
   externalUrl: https://dome-marketplace.dev.in2.es
-
   bizEcosystemChargingBackend:
     maxUploadSize: "5242880"
     serviceAccount:
@@ -145,10 +140,8 @@ business-api-ecosystem:
     basePath: /opt/business-ecosystem-charging-backend
     token:
       enabled: false
-
   oauth:
     provider: "vc"
-
   bizEcosystemLogicProxy:
     serviceAccount:
       create: true
@@ -158,10 +151,9 @@ business-api-ecosystem:
         repository: fiware/biz-ecosystem-logic-proxy
         tag: "9.10.1"
         pullPolicy: Always
-
     ingress:
       enabled: true
-      className: nginx
+      className: azure/application-gateway
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-issuer
       tls:
@@ -172,16 +164,13 @@ business-api-ecosystem:
       - host: dome-marketplace.dev.in2.es
         paths:
         - "/"
-
     port: 8004
     nodeEnvironment: production
-
     db:
       host: mongodb
       database: belp_db
       user: belp
     basePath: /opt/business-ecosystem-logic-proxy
-
     externalIdp:
       enabled: true
     initContainers: false
