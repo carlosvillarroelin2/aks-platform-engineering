@@ -18,7 +18,7 @@ verifier-api:
     tls:
     - hosts:
       - verifier.dome-marketplace.dev.in2.es
-      secretName: verifier-tls-sec
+      secretName: verifier-tls-secret
 
   app:
     profile: dev

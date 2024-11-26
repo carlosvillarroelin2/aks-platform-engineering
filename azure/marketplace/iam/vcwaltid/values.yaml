@@ -1,11 +1,12 @@
-# Organisation DID
-did: did:web:dome-marketplace.dev.in2.es
+# -- DID of the operator in the format **did:elsi:VAT{VAT_NUMBER}**. VAT_NUMBER: The VAT indetification number of the operator
+# -- To generate use https://dome-marketplace.github.io/dome-crypto-generator/
+did: did:key:zDnaegSQTuyu6LaSqNepQYcuqjcRLDeA5AyjqPLtFhbyNxcrk
 
 ingress:
   enabled: true
   annotations: 
+    kubernetes.io/ingress.class: azure/application-gateway
     cert-manager.io/cluster-issuer: letsencrypt-issuer
-  class: nginx
   host: dome-marketplace.dev.in2.es
   tls: 
     enabled: true

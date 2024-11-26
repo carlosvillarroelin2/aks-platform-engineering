@@ -156,14 +156,14 @@ business-api-ecosystem:
       annotations:
         kubernetes.io/ingress.class: azure/application-gateway
         cert-manager.io/cluster-issuer: letsencrypt-issuer
-      tls:
-      - hosts:
-        - dome-marketplace.dev.in2.es
-        secretName: bae-tls-sec
       hosts:
       - host: dome-marketplace.dev.in2.es
         paths:
         - "/"
+      tls:
+      - hosts:
+        - dome-marketplace.dev.in2.es
+        secretName: bae-tls-secret
     port: 8004
     nodeEnvironment: production
     db:
