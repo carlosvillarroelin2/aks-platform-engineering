@@ -50,6 +50,9 @@ Choose Crossplane **or** Cluster API provider for Azure (CAPZ) to support deploy
 
 ## Getting Started
 
+### Configure the Access Node
+Follow the steps 1-4 as described in https://github.com/DOME-Marketplace/access-node#how-to-deploy 
+
 ### Provisioning the Control Plane Cluster
 
 - Fork the repo
@@ -87,7 +90,7 @@ terraform apply --auto-approve
 
 Terraform completed installing the AKS cluster, installing ArgoCD, and configuring ArgoCD to install applications under the `gitops/bootstrap/control-plane/addons` directory from the git repo.
 
-### Configure Cert-Manager with Azure DNS Zone
+### Configure Cert-Manager with Azure DNS Zone ()
 
 https://cert-manager.io/docs/configuration/acme/dns01/azuredns/#service-principal
 

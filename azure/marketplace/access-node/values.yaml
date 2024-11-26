@@ -8,21 +8,21 @@ access-node:
     image:
       repository: in2workspace/in2-desmos-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.0.1-snapshot
+      tag: v1.0.1
       pullPolicy: Always
     ingress:
       enabled: true
-      className: nginx
       annotations:
+        kubernetes.io/ingress.class: azure/application-gateway
         cert-manager.io/cluster-issuer: letsencrypt-issuer
       hosts:
-      - host: dome-desmos.dev.in2.es
+      - host: desmos.dome-marketplace.dev.in2
         paths:
         - path: /
           pathType: Prefix
       tls:
       - hosts:
-        - dome-desmos.dev.in2.es
+        - desmos.dome-marketplace.dev.in2
         secretName: desmos-tls-secret
     ## deployment specific configuration
     app:
@@ -33,7 +33,8 @@ access-node:
       ## information about the access-node operator
       operator:
         # -- DID of the operator in the format **did:elsi:VAT{VAT_NUMBER}**. VAT_NUMBER: The VAT indetification number of the operator
-        organizationIdentifier: did:elsi:VATES-S9999999E
+        # -- To generate use https://dome-marketplace.github.io/dome-crypto-generator/
+        organizationIdentifier: did:key:zDnaegSQTuyu6LaSqNepQYcuqjcRLDeA5AyjqPLtFhbyNxcrk
       ## connection information for the context broker
       broker:
         # -- provider of the broker
@@ -63,13 +64,14 @@ access-node:
         # -- a list of entity-types the connector is interested in
         entityTypes: catalog,product-offering,category,individual,organization,product,service-specification,product-offering-price,resource-specification,product-specification
       # -- URL of the Marketplace of the operator
-      externalDomain: "https://dome-desmos.dev.in2.es"
+      externalDomain: "https://desmos.dome-marketplace.dev.in2"
       externalAccessNodesUrls:
         enableCustomUrls: true
         customUrls: ""
       # -- Private key of the operator to sign JWT. Alternatively, you can add it as a sealed secret.
+      # -- To generate use https://dome-marketplace.github.io/dome-crypto-generator/
       privateKey: 
-        value: "0x4c88c1c84e65e82b9ed6b49313c6a624d58b2b11e40b4b64e3b9d0a1d5e4dfajE"
+        value: "0x15aa33a07f6680d1bb3e7524ea3f6ce6ba0eb39a3efa146c3d84a0487505d9f8"
         existingSecret:
           # -- should an existing secret be used
           enabled: false
@@ -115,9 +117,10 @@ access-node:
     env:
       DEBUG: "*"
       # -- Private key of the operator in the Alastria Red-T Blockchain to sign transactions. Alternatively, you can add it as a sealed secret.
-      PRIVATE_KEY: "0x4c88c1c84e65e82b9ed6b49313c6a624d58b2b11e40b4b64e3b9d0a1d5e4dfaj"
+      # -- To generate use https://dome-marketplace.github.io/dome-crypto-generator/
+      PRIVATE_KEY: "0x426fcbb2bebdc7607638db9879d21a18d0585ff3ec007f23dc8776e9a1c07904"
       RPC_ADDRESS: "https://red-t.alastria.io/v0/9461d9f4292b41230527d57ee90652a6"
-      ISS: "0x43b27fef24cfe8a0b797ed8a36de2884f9963c0c2a0da640e3ec7ad6cd0c493d"
+      ISS: "0xb34dcb3fcccc37d89a4742617eef81d0920cbd2e0204ceea2bb3ddd1f8b85876"
     
   ## configuration of postgres to be used for the blockchain-connector - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
   postgresql:
@@ -251,56 +254,55 @@ access-node:
     apiProxy:
       # -- the proxy must be enabled
       enabled: true
-
     apis:
-      - name: party-catalog
-        image: tmforum-party-catalog
-        basePath: /
+    - name: party-catalog
+      image: tmforum-party-catalog
+      basePath: /
 
-      - name: customer-bill-management
-        image: tmforum-customer-bill-management
-        basePath: /
+    - name: customer-bill-management
+      image: tmforum-customer-bill-management
+      basePath: /
 
-      - name: customer-management
-        image: tmforum-customer-management
-        basePath: /
+    - name: customer-management
+      image: tmforum-customer-management
+      basePath: /
 
-      - name: product-catalog
-        image: tmforum-product-catalog
-        basePath: /
+    - name: product-catalog
+      image: tmforum-product-catalog
+      basePath: /
 
-      - name: product-inventory
-        image: tmforum-product-inventory
-        basePath: /
+    - name: product-inventory
+      image: tmforum-product-inventory
+      basePath: /
 
-      - name: product-ordering-management
-        image: tmforum-product-ordering-management
-        basePath: /
+    - name: product-ordering-management
+      image: tmforum-product-ordering-management
+      basePath: /
 
-      - name: resource-catalog
-        image: tmforum-resource-catalog
-        basePath: /
+    - name: resource-catalog
+      image: tmforum-resource-catalog
+      basePath: /
 
-      - name: resource-function-activation
-        image: tmforum-resource-function-activation
-        basePath: /
+    - name: resource-function-activation
+      image: tmforum-resource-function-activation
+      basePath: /
 
-      - name: resource-inventory
-        image: tmforum-resource-inventory
-        basePath: /
+    - name: resource-inventory
+      image: tmforum-resource-inventory
+      basePath: /
 
-      - name: service-catalog
-        image: tmforum-service-catalog
-        basePath: /
+    - name: service-catalog
+      image: tmforum-service-catalog
+      basePath: /
 
-      - name: account
-        image: tmforum-account
-        basePath: /
+    - name: account
+      image: tmforum-account
+      basePath: /
 
-      - name: agreement
-        image: tmforum-agreement
-        basePath: /
+    - name: agreement
+      image: tmforum-agreement
+      basePath: /
 
-      - name: usage-management
-        image: tmforum-usage-management
-        basePath: /
+    - name: usage-management
+      image: tmforum-usage-management
+      basePath: /
