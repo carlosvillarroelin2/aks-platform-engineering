@@ -1,3 +1,5 @@
+#TODO Replace the ingress-nginx with this one avoiding changes on the Chart and values.yaml
+#TODO Create the dome-marketplace.dev.in2.es as a DNS Zone to test the  NGINX Ingress with the Az Load Balancer. https://learn.microsoft.com/en-us/azure/aks/app-routing#limitations
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -22,3 +24,8 @@ spec:
   - hosts:
     - dome-marketplace-alb.dev.in2.es
     secretName: bae-alb-tls-sec
+
+# Add all routes to the ONLY ingress
+#verifier.dome-marketplace.dev.in2.es
+#issuer.dome-marketplace.dev.in2.es
+#desmos.dome-marketplace.dev.in2.es ?
