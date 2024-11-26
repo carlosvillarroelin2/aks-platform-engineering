@@ -8,20 +8,21 @@ verifier-api:
     enabled: true
     className: nginx
     annotations:
+      kubernetes.io/ingress.class: azure/application-gateway
       cert-manager.io/cluster-issuer: letsencrypt-issuer
     hosts:
-      - host: dome-verifier.dev.in2.es
-        paths:
-          - path: /
-            pathType: Prefix
+    - host: verifier.dome-marketplace.dev.in2.es
+      paths:
+      - path: /
+        pathType: Prefix
     tls:
-      - hosts:
-          - dome-verifier.dev.in2.es
-        secretName: verifier-tls-sec
+    - hosts:
+      - verifier.dome-marketplace.dev.in2.es
+      secretName: verifier-tls-sec
 
   app:
     profile: dev
-    externalDomain: "https://dome-verifier.dev.in2.es"
+    externalDomain: "https://verifier.dome-marketplace.dev.in2.es"
     accessToken:
       expirationUnitTime: DAYS
       expirationTime: 1
