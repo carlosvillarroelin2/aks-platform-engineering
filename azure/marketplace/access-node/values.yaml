@@ -16,13 +16,13 @@ access-node:
         kubernetes.io/ingress.class: azure/application-gateway
         cert-manager.io/cluster-issuer: letsencrypt-issuer
       hosts:
-      - host: desmos.dome-marketplace.dev.in2
+      - host: desmos.dome-marketplace.dev.in2.es
         paths:
         - path: /
           pathType: Prefix
       tls:
       - hosts:
-        - desmos.dome-marketplace.dev.in2
+        - desmos.dome-marketplace.dev.in2.es
         secretName: desmos-tls-secret
     ## deployment specific configuration
     app:
@@ -64,7 +64,7 @@ access-node:
         # -- a list of entity-types the connector is interested in
         entityTypes: catalog,product-offering,category,individual,organization,product,service-specification,product-offering-price,resource-specification,product-specification
       # -- URL of the Marketplace of the operator
-      externalDomain: "https://desmos.dome-marketplace.dev.in2"
+      externalDomain: "https://desmos.dome-marketplace.dev.in2.es"
       externalAccessNodesUrls:
         enableCustomUrls: true
         customUrls: ""
