@@ -53,6 +53,9 @@ Choose Crossplane **or** Cluster API provider for Azure (CAPZ) to support deploy
 ### Configure the Access Node
 Follow the steps 1-4 as described in https://github.com/DOME-Marketplace/access-node#how-to-deploy 
 
+Pull request to Add your acces-node into https://github.com/DOME-Marketplace/trust-framework/blob/main/{ENVIRONMENT}/trusted_access_nodes_list.yaml
+Pull request to Add your marketplace into https://github.com/DOME-Marketplace/trust-framework/blob/main/{ENVIRONMENT}/trusted_services_list.yaml
+
 ### Provisioning the Control Plane Cluster
 
 - Fork the repo
