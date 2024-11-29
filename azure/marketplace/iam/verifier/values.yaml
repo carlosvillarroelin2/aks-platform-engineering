@@ -6,7 +6,6 @@ verifier-api:
 
   ingress:
     enabled: true
-    className: nginx
     annotations:
       kubernetes.io/ingress.class: azure/application-gateway
       cert-manager.io/cluster-issuer: letsencrypt-issuer
