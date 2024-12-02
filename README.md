@@ -21,9 +21,9 @@ description: This project demonstrates the process of implementing a consistent 
 urlFragment: aks-platform-engineering
 ---
 
-# Building a Platform Engineering Environment on Azure Kubernetes Service (AKS)
+# DOME MArketplace on Azure Kubernetes Service (AKS)
 
-At its core, platform engineering is about constructing a solid and adaptable groundwork that simplifies and accelerates the development, deployment, and operation of software applications.  The goal is to abstract the complexity inherent in managing infrastructure and operational concerns, enabling dev teams to focus on crafting code that adds direct value. This environment is based on GitOps principles and includes a set of best practices and tools to manage the lifecycle of the applications and the underlying infrastructure. Many platform teams use multiple clusters to separate concerns and provide isolation between different environments, such as development, staging, and production. This guide provides a reference architecture and sample to build a platform engineering environment on Azure Kubernetes Service (AKS).
+TODO Update description 
 
 This sample will illustrate an end-to-end workflow that Platform Engineering and Development teams need to deploy multi-cluster environments on AKS:
 
@@ -33,6 +33,8 @@ This sample will illustrate an end-to-end workflow that Platform Engineering and
 - The development team deploys applications using GitOps principles and ArgoCD.
 
 ## Architecture
+
+TODO Update diagram
 
 This sample leverages the [GitOps Bridge Pattern](https://github.com/gitops-bridge-dev/gitops-bridge?tab=readme-ov-file).  The following diagram shows the high-level architecture of the solution:  
 ![Platform Engineering on AKS Architecture Diagram](./images/AKS-platform-engineering-architecture.png)
@@ -50,16 +52,16 @@ Choose Crossplane **or** Cluster API provider for Azure (CAPZ) to support deploy
 
 ## Getting Started
 
-### Configure the Access Node
+### Permissioning your Marketplace
 Follow the steps 1-4 as described in https://github.com/DOME-Marketplace/access-node#how-to-deploy 
 
 Pull request to Add your acces-node into https://github.com/DOME-Marketplace/trust-framework/blob/main/{ENVIRONMENT}/trusted_access_nodes_list.yaml
 Pull request to Add your marketplace into https://github.com/DOME-Marketplace/trust-framework/blob/main/{ENVIRONMENT}/trusted_services_list.yaml
 
-### Provisioning the Control Plane Cluster
+### Provisioning the DOME Marketplace on AKS Cluster
 
 - Fork the repo
-- Only if the repo is desired to be private, ArgoCD will need a ssh deploy key to access this repo. Follow these steps to enable: 
+- ONLY if the repo is desired to be private, ArgoCD will need a ssh deploy key to access this repo. Follow these steps to enable: 
     - Create a [read-only deploy ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys#deploy-keys) on the fork
     - Place the corresponding private key named `private_ssh_deploy_key` in the `terraform` directory
     - Change the `gitops_addons_org` variable to `git@github.com:Azure-Samples` replacing Azure-Samples with your fork org/username versus the existing `https://` format
@@ -78,10 +80,8 @@ cd terraform
 terraform init -upgrade
 ```
 
-Choose the `infrastructure_provider` variable to be `capz` (default) or `crossplane`.
-
 > [!Important] 
-> Change `azure-samples` to your fork organization or GitHub user name in the commands below.
+> Change and  `azure-samples` to your fork organization or GitHub user name in the commands below.
 
 Alternatively, consider changing the example `tvars` file to match your desired configuration
 
@@ -223,8 +223,12 @@ kubectl apply -f gitops/apps/marketplace/mysql.yaml -n argocd
 kubectl apply -f gitops/apps/marketplace/mongodb.yaml -n argocd
 kubectl apply -f gitops/apps/marketplace/credentials-config-service.yaml -n argocd
 kubectl apply -f gitops/apps/marketplace/trusted-issuers-list.yaml -n argocd
-
+kubectl apply -f gitops/apps/marketplace/vcwaltid.yaml -n argocd
+kubectl apply -f gitops/apps/marketplace/access-node.yaml -n argocd
+kubectl apply -f gitops/apps/marketplace/bae.yaml -n argocd
 ```
+
+FIXME Verifier not required. Use the DOME Marketplace Verifier
 
 ### Enable Application Gateway Ingress Controller add-on for the AKS
 
