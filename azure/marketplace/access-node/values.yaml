@@ -34,7 +34,7 @@ access-node:
       operator:
         # -- DID of the operator in the format **did:elsi:VAT{VAT_NUMBER}**. VAT_NUMBER: The VAT indetification number of the operator
         # -- To generate use https://dome-marketplace.github.io/dome-crypto-generator/
-        organizationIdentifier: did:key:zDnaegSQTuyu6LaSqNepQYcuqjcRLDeA5AyjqPLtFhbyNxcrk
+        organizationIdentifier: did:elsi:VATES-TEST6037254
       ## connection information for the context broker
       broker:
         # -- provider of the broker

@@ -58,6 +58,19 @@ Follow the steps 1-4 as described in https://github.com/DOME-Marketplace/access-
 Pull request to Add your acces-node into https://github.com/DOME-Marketplace/trust-framework/blob/main/{ENVIRONMENT}/trusted_access_nodes_list.yaml
 Pull request to Add your marketplace into https://github.com/DOME-Marketplace/trust-framework/blob/main/{ENVIRONMENT}/trusted_services_list.yaml
 
+### Authentication provider
+TODO 
+
+```hcl
+verifier:
+  host: https://verifier.dome-marketplace-sbx.org/
+  qrCodePath: /oidc/authorize
+  tokenPath: /oidc/token
+  jwksPath: /oidc/jwks
+```
+
+
+
 ### Provisioning the DOME Marketplace on AKS Cluster
 
 - Fork the repo
