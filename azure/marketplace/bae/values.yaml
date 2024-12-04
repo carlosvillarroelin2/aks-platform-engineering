@@ -184,11 +184,11 @@ business-api-ecosystem:
       - name: BAE_LP_CHAT_URL
         value: https://dome-eng-gpt.dev.in2.es/predict
       - name: BAE_LP_KNOWLEDGE_BASE_URL
-        value: https://dome-knowledgebase.dev.in2.es/
+        value: https://knowledgebase.dome-marketplace.org/
       - name: BAE_LP_TICKETING_URL
-        value: https://dome-ticketing.dev.in2.es/
+        value: https://ticketing.dome-marketplace.org/
       - name: BAE_LP_SIOP_OPERATORS
-        value: did:elsi:VATES-B87798617
+        value: did:elsi:VATES-TEST6037254
       - name: BAE_LP_SEARCH_URL
         value: http://dome-search-svc.search-engine.svc.cluster.local:8080
       - name: BAE_LP_MATOMO_ID
@@ -196,7 +196,7 @@ business-api-ecosystem:
       - name: BAE_LP_MATOMO_URL
         value: https://dome-webstats.eurodyn.com/
       - name: BAE_LP_DOME_TRUST
-        value: https://dome-certification.dev.in2.es
+        value: https://dome-certification.dome-marketplace-sbx.org
       - name: BAE_LP_SIOP_PRIVATE_KEY
         valueFrom:
           secretKeyRef:
