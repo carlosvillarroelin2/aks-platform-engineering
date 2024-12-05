@@ -39,3 +39,6 @@ override.tf.json
 .terraformrc
 terraform.rc
 terraform/kubeconfig
+
+# Ignore temporary files
+*.tmp
