@@ -247,7 +247,7 @@ access-node:
       # -- configuration to be used for the image of the containers
       image:
         # -- current latest tag
-        tag: "0.20.1"
+        tag: "0.26.2-PRE-59"
       # -- ngsi-ld broker connection information
       ngsiLd:
         # -- address of the broker
