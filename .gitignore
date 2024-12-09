@@ -41,4 +41,4 @@ terraform.rc
 terraform/kubeconfig
 
 # Ignore temporary files
-*.tmp
+*.tmp*

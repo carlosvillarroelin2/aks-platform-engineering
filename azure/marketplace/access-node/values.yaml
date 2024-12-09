@@ -37,6 +37,12 @@ access-node:
         organizationIdentifier: did:elsi:VATES-TEST6037254
       ## connection information for the context broker
       broker:
+        paths:
+          entities: "/ngsi-ld/v1/entities"
+          entityOperations: "/ngsi-ld/v1/entityOperations"
+          subscriptions: "/ngsi-ld/v1/subscriptions"
+          temporal: "/ngsi-ld/v1/temporal/entities"
+
         # -- provider of the broker
         provider: scorpio
         # -- internal address of the context broker to be used by the connector
@@ -66,7 +72,7 @@ access-node:
       # -- URL of the Marketplace of the operator
       externalDomain: "https://desmos.dome-marketplace.dev.in2.es"
       externalAccessNodesUrls:
-        enableCustomUrls: true
+        enableCustomUrls: false
         customUrls: ""
       # -- Private key of the operator to sign JWT. Alternatively, you can add it as a sealed secret.
       # -- To generate use https://dome-marketplace.github.io/dome-crypto-generator/
@@ -162,7 +168,7 @@ access-node:
       # -- repository to be used - resource friendly all-in-one-runner without kafka
       repository: scorpiobroker/all-in-one-runner
       # -- tag of the image to be used - latest java image without kafka
-      tag: java-4.1.10
+      tag: java-4.1.11
     ## configuration of the database to be used by broker
     db:
       # -- host of the db
