@@ -50,7 +50,7 @@ business-api-ecosystem:
     enabled: true
     # Client ID in the form of 
     # Decentralized identifier (DID) in the format **did:key:{KEY_VALUE}**. KEY_VALUE: The Key value of the DID.
-    # To generate use https://dome-marketplace.github.io/dome-crypto-generator/
+    # To generate use https://dome-marketplace.github.io/dome-crypto-generator/. Use the value of Desmos Keys -> DID
     clientId: did:key:zDnaegSQTuyu6LaSqNepQYcuqjcRLDeA5AyjqPLtFhbyNxcrk
     verifier:
       host: https://verifier.dome-marketplace-sbx.org

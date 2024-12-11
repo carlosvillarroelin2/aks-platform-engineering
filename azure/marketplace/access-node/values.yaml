@@ -33,7 +33,7 @@ access-node:
       ## information about the access-node operator
       operator:
         # -- DID of the operator in the format **did:elsi:VAT{VAT_NUMBER}**. VAT_NUMBER: The VAT indetification number of the operator
-        # -- To generate use https://dome-marketplace.github.io/dome-crypto-generator/
+        # -- Example: did:elsi:VATES-TEST6037254
         organizationIdentifier: did:elsi:VATES-TEST6037254
       ## connection information for the context broker
       broker:
@@ -75,7 +75,7 @@ access-node:
         enableCustomUrls: false
         customUrls: ""
       # -- Private key of the operator to sign JWT. Alternatively, you can add it as a sealed secret.
-      # -- To generate use https://dome-marketplace.github.io/dome-crypto-generator/
+      # -- To generate use https://dome-marketplace.github.io/dome-crypto-generator/. Use the value of Desmos Keys -> Private Key
       privateKey: 
         value: "0x15aa33a07f6680d1bb3e7524ea3f6ce6ba0eb39a3efa146c3d84a0487505d9f8"
         existingSecret:
@@ -123,9 +123,10 @@ access-node:
     env:
       DEBUG: "*"
       # -- Private key of the operator in the Alastria Red-T Blockchain to sign transactions. Alternatively, you can add it as a sealed secret.
-      # -- To generate use https://dome-marketplace.github.io/dome-crypto-generator/
+      # -- To generate use https://dome-marketplace.github.io/dome-crypto-generator/. Use the value of DLT Keys -> Private Key
       PRIVATE_KEY: "0x426fcbb2bebdc7607638db9879d21a18d0585ff3ec007f23dc8776e9a1c07904"
       RPC_ADDRESS: "https://red-t.alastria.io/v0/9461d9f4292b41230527d57ee90652a6"
+      # -- To generate use https://dome-marketplace.github.io/dome-crypto-generator/. Use the value of DLT Keys -> ISS
       ISS: "0xb34dcb3fcccc37d89a4742617eef81d0920cbd2e0204ceea2bb3ddd1f8b85876"
     
   ## configuration of postgres to be used for the blockchain-connector - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
